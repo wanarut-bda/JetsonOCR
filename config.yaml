@@ -1,0 +1,24 @@
+# MQTT Broker
+host: '192.168.88.61'
+port: 1885
+
+# recognition areas & topics
+areas:
+  - [346, 133, 53, 36]
+  - [647, 141, 50, 33]
+  - [344, 372, 50, 29]
+  - [639, 372, 55, 34]
+  # - [658, 445, 36, 25]
+topics:
+  - 'heart_rate/1'
+  - 'heart_rate/2'
+  - 'heart_rate/3'
+  - 'heart_rate/4'
+  # - 'heart_rate/5'
+
+# python script config
+video_resource: test_video.mp4  # from file video
+# video_resource: 0   # from camera
+recognition: true
+display: true
+roi_zoom: 7

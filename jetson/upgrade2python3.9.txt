@@ -1,0 +1,90 @@
+#upgrade to python3.9
+sudo apt-get update
+sudo apt-get full-upgrade
+sudo apt install curl
+sudo apt install nano
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt list | grep python3.9
+sudo apt-get install python3.9
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2
+sudo update-alternatives --config python3
+python3 -V
+
+--------------------------------------------------------
+#install pip3
+#curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+curl https://bootstrap.pypa.io/pip/3.6/get-pip.py -o get-pip.py
+sudo apt-get install python3.9-distutils
+sudo python3 get-pip.py
+
+#install monitoring
+sudo pip3 install jetson-stats
+jtop
+nvcc -V
+pkg-config opencv4 --modversion
+
+#clear for free space
+sudo apt-get remove -y libreoffice*
+sudo apt-get remove -y thunderbird*
+sudo apt-get clean -y
+
+#install vnc
+sudo apt update
+sudo apt install vino
+mkdir -p ~/.config/autostart
+cp /usr/share/applications/vino-server.desktop ~/.config/autostart
+gsettings set org.gnome.Vino prompt-enabled false
+gsettings set org.gnome.Vino require-encryption false
+gsettings set org.gnome.Vino authentication-methods "['vnc']"
+gsettings set org.gnome.Vino vnc-password $(echo -n 'aabbccddee'|base64)
+sudo reboot
+
+sudo cp /usr/local/gnome-terminal.real /usr/local/gnome-terminal
+pip3 freeze | grep opencv-python
+pip3 cache purge
+
+#open vnc and install opencv&easyocr
+pip3 install opencv-contrib-python==4.5.3.56
+pip3 install easyocr
+
+#install pytorch
+wget https://nvidia.box.com/shared/static/p57jwntv436lfrd78inwl7iml6p13fzh.whl -O torch-1.8.0-cp36-cp36m-linux_aarch64.whl
+sudo apt-get install python3-pip libopenblas-base libopenmpi-dev libomp-dev
+pip3 install Cython
+pip3 install numpy torch-1.8.0-cp36-cp36m-linux_aarch64.whl
+pip3 install torchvision==0.9.0
+
+--------------------------------------------------------
+#run python
+OPENBLAS_CORETYPE=ARMV8 python3
+import cv2
+cv2.__version__
+tracker = cv2.TrackerCSRT_create()
+
+import torch
+torch.cuda.is_available()
+torch.cuda.device_count()
+torch.cuda.get_device_name(0)
+
+import easyocr
+reader = easyocr.Reader(['en'], gpu=True)
+
+#test_video.mp4
+https://drive.google.com/file/d/15VL2JfFLY9am93zxh6XVR2qH19ri3ueX/view?usp=sharing
+
+
+
+
+--------------------------------------------------------
+#raspberry pi
+git clone https://github.com/Kashu7100/pytorch-armv7l.git
+cd pytorch-armv7l/
+pip3 install torch-1.7.0a0-cp37-cp37m-linux_armv7l.whl
+pip3 install torchvision-0.8.0a0+45f960c-cp37-cp37m-linux_armv7l.whl
+pip3 install numpy==1.21.6
+pip3 install pillow==9.1.1
+sudo apt-get install libhdf5-dev libhdf5-serial-dev libatlas-base-dev libjasper-dev libqtgui4 libqt4-test
+pip3 install opencv-contrib-python==4.5.3.56
+pip3 install easyocr
