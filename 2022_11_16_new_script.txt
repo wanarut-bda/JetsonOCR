@@ -10,8 +10,11 @@
    normal or minimal installation & must select option "dowload updates" (or use $sudo apt update)
 2. Login & Download SDK from https://developer.nvidia.com/embedded/downloads
 3. select Flash Jetpack 4.6.2 OS
-4. do not check for install Jetson SDK Components before build Opencv 4.5.3 (Part Build OpenCV)
+4. check Jetson OS
+4. do not check Jetson SDK Components before build Opencv 4.5.3 (Part Build OpenCV)
 5. select automatic setup + runtime option on 3rd step in SDK Manager
+$ssh jetson@<jetson-ip>
+password yahboom
 ----------------------------------------------------------------------
 ------------------------ Part PIP 3 ----------------------------------
 # install pip3 for python 3.6.9
@@ -20,36 +23,42 @@ sudo python3 get-pip.py
 ----------------------------------------------------------------------
 ------------------------ (Optional) Part Monitoring ------------------
 # install monitoring tool
+sudo apt -y update
 sudo -H pip3 install -U jetson-stats
 sudo systemctl restart jetson_stats.service
 sudo jtop
-----------------------------------------------------------------------
------------------------- Part Clear Space ----------------------------
-# After install All SDK, jetson nano has 84% disk usage (case install Jetson SDK Components)
-
-# clear for free space
-sudo apt remove -y libreoffice* thunderbird*
-sudo apt-get autoremove
-sudo apt-get clean
-
-# reduce disk usage to 80%
 ----------------------------------------------------------------------
 ------------------------ Part Build OpenCV ---------------------------
 # Before Build OpenCV, jetson nano has 38% disk usage (case do not install Jetson SDK Components)
 # build opencv
 git clone https://github.com/wanarut-bda/buildOpenCV.git
 cd buildOpenCV
-./buildOpenCV.sh |& tee openCV_build.log
+sudo ./buildOpenCV.sh |& tee openCV_build.log
 # take time about 5 hours
 
-delete opencv & opencv_contrib folder in /home
-
 # check build Information
+python3
+import cv2
 print(cv2.getBuildInformation())
-# After Build OpenCV, jetson nano has 90% disk usage
+# Version control:      4.5.3-dirty
+# GStreamer:            YES (1.14.5)
+# After Build OpenCV, jetson nano has 51% disk usage
+delete opencv & opencv_contrib folder in /home (1.9 GB)
+# After Delete opencv folder, jetson nano has 39% disk usage
+----------------------------------------------------------------------
+------------------------ Part Clear Space ----------------------------
+# After install All SDK, jetson nano has 84% disk usage (case install Jetson SDK Components)
+
+# clear for free space
+sudo apt remove -y libreoffice* thunderbird*
+sudo apt-get -y autoremove
+sudo apt-get clean
+
+# reduce disk usage to 80%
 ----------------------------------------------------------------------
 ------------------------ Part Jetson Nano SDK ------------------------
-1. check for install Jetson SDK Components
+4. do not check Jetson OS
+4. check Jetson SDK Components after build Opencv 4.5.3 (Part Build OpenCV)
 2. select automatic setup + runtime option on 3rd step in SDK Manager
 
 # check cuda version
