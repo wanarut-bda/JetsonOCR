@@ -91,6 +91,8 @@
     function clearConfig() {        
         if(confirm('Want to Clear?')){
             // code clearing
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctxo.clearRect(0, 0, canvas.width, canvas.height);
             alert('Clear Done');
         }
     }
