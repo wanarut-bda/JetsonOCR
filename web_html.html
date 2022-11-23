@@ -2,6 +2,10 @@
     <canvas id="overlay" width=1280 height=720></canvas>
     <canvas id="canvas" width=1280 height=720></canvas>
 </div>
+<div id="button_group">
+    <button onclick="saveConfig()" style="min-width: 200px; margin-inline: 24px;">Save</button>
+    <button onclick="clearConfig()" style="min-width: 200px; margin-inline: 24px;">Clear</button>
+</div>
 
 <style>
     .pywebio {
@@ -10,6 +14,7 @@
     }
 
     .container {
+        width: 1280px;
         max-width: 100%;
         padding-right: 0px;
         padding-left: 0px;
@@ -23,7 +28,7 @@
     }
 
     canvas {
-        position: absolute;
+        position: fixed;
     }
 
     #canvasWrapper {
@@ -33,6 +38,11 @@
 
     .footer {
         display: none;
+    }
+
+    #button_group {
+        padding: 24px;
+        text-align: center;
     }
 </style>
 
@@ -70,6 +80,20 @@
 
     var prevWidth = 0;
     var prevHeight = 0;
+
+    function saveConfig() {        
+        if(confirm('Want to Save?')){
+            // code saving
+            alert('Save Done');
+        }
+    }
+
+    function clearConfig() {        
+        if(confirm('Want to Clear?')){
+            // code clearing
+            alert('Clear Done');
+        }
+    }
 
     function handleMouseDown(e) {
         e.preventDefault();
