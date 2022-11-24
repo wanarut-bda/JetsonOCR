@@ -9,9 +9,9 @@
 1. install `Ubuntu 18 only` (ubuntu-18.04.6-desktop-amd64.iso) (storage 80 GB or more) on `VMWare 15 only`
 2. Login & Download SDK Manager from https://developer.nvidia.com/embedded/downloads
 3. select Flash `Jetpack 4.6.2` OS
-4. select check box Jetson OS
-5. do not select check box Jetson SDK Components before build `Opencv 4.5.3` (Part Build OpenCV)
-6. select automatic setup + runtime option on 3rd step in SDK Manager<br>
+<!-- 4. select check box Jetson OS
+5. do not select check box Jetson SDK Components before build `Opencv 4.5.3` (Part Build OpenCV) -->
+4. select automatic setup + runtime option on 3rd step in SDK Manager<br>
 ### test connection
 >`$ ssh jetson@<jetson-ip>`<br>
 password for jetson: yahboom
@@ -30,6 +30,8 @@ password for jetson: yahboom
 ***
 # Part Build OpenCV
 ### Before Build OpenCV, jetson nano has 38% disk usage (case do not install Jetson SDK Components)
+### Delete OpenCV 4.1.1 that comes with Jetpack 4.6.2
+>`$ sudo apt-get purge *libopencv*` <br>
 ### build opencv
 >`$ git clone https://github.com/wanarut-bda/buildOpenCV.git` <br>
 `$ cd buildOpenCV` <br>
@@ -57,11 +59,11 @@ password for jetson: yahboom
 `$ sudo apt-get clean`
 
 ### reduce disk usage to 80%
-# Part Jetson SDK Components
+<!-- # Part Jetson SDK Components
 1. do not check Jetson OS
 2. check Jetson SDK Components after build Opencv 4.5.3 (Part Build OpenCV)
 3. select automatic setup + runtime option on 3rd step in SDK Manager
-### After install Jetson SDK Components, jetson nano has 90% disk usage
+### After install Jetson SDK Components, jetson nano has 90% disk usage -->
 ### check cuda version
 >`$ nvcc -V`
 ***
@@ -82,7 +84,7 @@ password for jetson: yahboom
 ## take time about 2 hours
 
 ## test project modules
-`$ python3` <br>
+`$ OPENBLAS_CORETYPE=ARMV8 python3` <br>
 >`import easyocr` <br>
 `import cv2` <br>
 `cv2.__version__` <br>
