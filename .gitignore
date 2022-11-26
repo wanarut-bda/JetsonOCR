@@ -4,3 +4,4 @@
 *.iso
 *.deb
 *.whl
+node_modules

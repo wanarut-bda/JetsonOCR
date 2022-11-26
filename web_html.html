@@ -1,6 +1,6 @@
 <div id="canvasWrapper">
-    <canvas id="overlay" width=1280 height=720></canvas>
-    <canvas id="canvas" width=1280 height=720></canvas>
+    <canvas id="overlay"></canvas>
+    <canvas id="canvas"></canvas>
 </div>
 <div id="button_group">
     <button onclick="saveConfig()" style="min-width: 200px; margin-inline: 24px;">Save</button>
@@ -8,10 +8,10 @@
 </div>
 
 <style>
-    .pywebio {
+    /* .pywebio {
         position: absolute;
         padding-top: 0px;
-    }
+    } */
 
     .container {
         width: 1280px;
@@ -22,23 +22,32 @@
         margin-left: 0px;
     }
 
-    body {
+    /* body {
         background-color: ivory;
         margin: auto;
-    }
+    } */
 
     canvas {
-        position: fixed;
+        display: inline-block;
+        border: 5px solid rgb(192, 45, 45);
+        background-size: cover;
+        cursor: crosshair;
+        /* position: fixed; */
+        /* margin: -5px; */
+        /* position: absolute; */
+        /* left: 8px; */
     }
 
     #canvasWrapper {
-        position: fixed;
-        top: 0;
+        position: absolute;
+        top: 15px;
+        max-width: 850px;
+        border: 5px solid chartreuse;
     }
 
-    .footer {
+    /* .footer {
         display: none;
-    }
+    } */
 
     #button_group {
         padding: 24px;
@@ -53,6 +62,10 @@
     var ctx = canvas.getContext("2d");
     var ctxo = overlay.getContext("2d");
 
+    var cur_pic = $("img").first();
+    canvas.style.height = cur_pic.height
+    canvas.style.width = cur_pic.width
+
     // style the context
     ctx.strokeStyle = "blue";
     ctx.lineWidth = 3;
@@ -61,12 +74,12 @@
 
     // calculate where the canvas is on the window
     // (used to help calculate mouseX/mouseY)
-    var $canvas = $("#canvas");
-    var canvasOffset = $canvas.offset();
-    var offsetX = canvasOffset.left;
-    var offsetY = canvasOffset.top;
-    var scrollX = $canvas.scrollLeft();
-    var scrollY = $canvas.scrollTop();
+    var $canvas = document.getElementById("canvas");
+    // var canvasOffset = $canvas.offset();
+    var offsetX = $canvas.offsetLeft;
+    var offsetY = $canvas.offsetTop;
+    var scrollX = $canvas.scrollLeft;
+    var scrollY = $canvas.scrollTop;
 
     // this flage is true when the user is dragging the mouse
     var isDown = false;

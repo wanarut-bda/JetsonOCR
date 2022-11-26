@@ -9,9 +9,9 @@
 1. install `Ubuntu 18 only` (ubuntu-18.04.6-desktop-amd64.iso) (storage 80 GB or more) on `VMWare 15 only`
 2. Login & Download SDK Manager from https://developer.nvidia.com/embedded/downloads
 3. select Flash `Jetpack 4.6.2` OS
-<!-- 4. select check box Jetson OS
-5. do not select check box Jetson SDK Components before build `Opencv 4.5.3` (Part Build OpenCV) -->
-4. select automatic setup + runtime option on 3rd step in SDK Manager<br>
+4. select check box Jetson OS
+5. select check box Jetson SDK Components
+6. select automatic setup + runtime option on 3rd step in SDK Manager<br>
 ### test connection
 >`$ ssh jetson@<jetson-ip>`<br>
 password for jetson: yahboom
@@ -28,7 +28,7 @@ password for jetson: yahboom
 `$ sudo systemctl restart jetson_stats.service`<br>
 `$ sudo jtop`
 ***
-# Part Build OpenCV
+<!-- # Part Build OpenCV
 ### Before Build OpenCV, jetson nano has 38% disk usage (case do not install Jetson SDK Components)
 ### Delete OpenCV 4.1.1 that comes with Jetpack 4.6.2
 >`$ sudo apt-get purge *libopencv*` <br>
@@ -38,17 +38,29 @@ password for jetson: yahboom
 `$ sudo ./buildOpenCV.sh |& tee openCV_build.log`
 ## take time about 5 hours
 
-### check build Information
+### check build Information -->
+
+### check Jetpack Opencv 4.1.1
 `$ python3` <br>
 >`import cv2` <br>
-`print(cv2.getBuildInformation())`
-### Version control:      4.5.3-dirty
+`print(cv2.getBuildInformation())` <br>
+`tracker = cv2.TrackerCSRT_create()` <br>
+
+
+### My personal suggestion is to: <br>
+- Use CSRT when you need higher object tracking accuracy and can tolerate slower FPS throughput <br>
+- Use KCF when you need faster FPS throughput but can handle slightly lower object tracking accuracy <br>
+- Use MOSSE when you need pure speed
+
+### Version control:        4.1.1-2-gd5a58aa75
+### GStreamer:              YES (1.14.5)
+<!-- ### Version control:      4.5.3-dirty
 ### GStreamer:            YES (1.14.5)
 ### After Build OpenCV, jetson nano has 51% disk usage
 ### delete opencv folder (1.9 GB)
 >`$ sudo rm -rf opencv*`
 
-### After Delete opencv folder, jetson nano has 39% disk usage
+### After Delete opencv folder, jetson nano has 39% disk usage -->
 ***
 # Part Clear Space
 ### After install All SDK, jetson nano has 84% disk usage (case install Jetson SDK Components)
@@ -80,7 +92,8 @@ password for jetson: yahboom
 ## take time about 10 minutes
 >`$ sudo -H pip3 install torchvision` <br>
 `$ sudo -H pip3 install easyocr` <br>
-`$ sudo -H pip3 uninstall opencv-python-headless`
+`$ sudo -H pip3 uninstall opencv-python-headless` <br>
+`$ sudo -H pip3 install opencv-contrib-python`
 ## take time about 2 hours
 
 ## test project modules
@@ -89,6 +102,7 @@ password for jetson: yahboom
 `import cv2` <br>
 `cv2.__version__` <br>
 `tracker = cv2.TrackerCSRT_create()` <br>
+`print(cv2.getBuildInformation())`
 ***
 ## or install pytorch via docker
 >- JetPack 4.6.1 (L4T R32.7.1) <br>
@@ -142,3 +156,11 @@ password for jetson: yahboom
 ## select number 2
 >`$ python3 -V`
 ***
+
+# Remark Limitation
+* `Jetpack 5.0.2` comes with `OpenCV 4.5.4` but not suitable for Nano
+* OpenCV package in pip3 does not come with `Gstreamer`
+* Buid OpenCV by shell script not suitable for `OPENBLAS_CORETYPE=ARMV8`
+* `Jetpack 4.6.2` comes with `OpenCV 4.1.1` but not have `cv2.TrackerCSRT_create()`
+* CSI Camera have to use `Gstreamer`
+* `easyocr` have to run on `OPENBLAS_CORETYPE=ARMV8 python3`
