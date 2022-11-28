@@ -85,7 +85,7 @@ password for jetson: yahboom
 `$ sudo -H pip3 install Cython` <br>
 `$ sudo -H pip3 install numpy torch-1.10.0-cp36-cp36m-linux_aarch64.whl`
 ## take time about 10 minutes
->`$ sudo -H pip3 install torchvision` <br>
+>`$ sudo -H pip3 install torchvision==0.10.0` <br>
 `$ sudo -H pip3 install easyocr` <br>
 `$ sudo -H pip3 uninstall opencv-python-headless` <br>
 `$ sudo -H pip3 install opencv-contrib-python==4.5.3.56`
@@ -100,7 +100,7 @@ password for jetson: yahboom
 `print(cv2.getBuildInformation())`
 ***
 # install MQTT Client
->`$ sudo -H pip3 install paho-mqtt`
+>`$ sudo -H pip3 install paho-mqtt pywebio`
 ***
 ## or install pytorch via docker
 >- JetPack 4.6.1 (L4T R32.7.1) <br>
