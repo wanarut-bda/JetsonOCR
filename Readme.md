@@ -37,7 +37,7 @@ password for jetson: yahboom
 ### Version control:        4.1.1-2-gd5a58aa75
 ### GStreamer:              YES (1.14.5)
 
-# Part Build OpenCV
+# (Optional) Part Build OpenCV
 <!-- ### Delete OpenCV 4.1.1 that comes with Jetpack 4.6.2
 >`$ sudo apt-get purge *libopencv*` <br>
 ### build opencv
@@ -55,7 +55,7 @@ password for jetson: yahboom
 ### Version control:        4.4.0
 ### GStreamer:              YES (1.14.5)
 
-# My personal suggestion is to: <br>
+## My personal suggestion is to: <br>
 - Use CSRT when you need higher object tracking accuracy and can tolerate slower FPS throughput <br>
 - Use KCF when you need faster FPS throughput but can handle slightly lower object tracking accuracy <br>
 - Use MOSSE when you need pure speed
@@ -88,11 +88,11 @@ password for jetson: yahboom
 >`$ sudo -H pip3 install torchvision` <br>
 `$ sudo -H pip3 install easyocr` <br>
 `$ sudo -H pip3 uninstall opencv-python-headless` <br>
-<!-- `$ sudo -H pip3 install opencv-contrib-python` -->
+`$ sudo -H pip3 install opencv-contrib-python==4.5.3.56`
 ## take time about 2 hours
 
 ## test project modules
-`$ OPENBLAS_CORETYPE=ARMV8 python3` <br>
+`$ python3` <br>
 >`import easyocr` <br>
 `import cv2` <br>
 `cv2.__version__` <br>
