@@ -28,39 +28,38 @@ password for jetson: yahboom
 `$ sudo systemctl restart jetson_stats.service`<br>
 `$ sudo jtop`
 ***
-<!-- # Part Build OpenCV
-### Before Build OpenCV, jetson nano has 38% disk usage (case do not install Jetson SDK Components)
-### Delete OpenCV 4.1.1 that comes with Jetpack 4.6.2
->`$ sudo apt-get purge *libopencv*` <br>
-### build opencv
->`$ git clone https://github.com/wanarut-bda/buildOpenCV.git` <br>
-`$ cd buildOpenCV` <br>
-`$ sudo ./buildOpenCV.sh |& tee openCV_build.log`
-## take time about 5 hours
-
-### check build Information -->
 
 ### check Jetpack Opencv 4.1.1
 `$ python3` <br>
 >`import cv2` <br>
 `print(cv2.getBuildInformation())` <br>
 `tracker = cv2.TrackerCSRT_create()` <br>
+### Version control:        4.1.1-2-gd5a58aa75
+### GStreamer:              YES (1.14.5)
 
+# Part Build OpenCV
+<!-- ### Delete OpenCV 4.1.1 that comes with Jetpack 4.6.2
+>`$ sudo apt-get purge *libopencv*` <br>
+### build opencv
+>`$ git clone https://github.com/wanarut-bda/buildOpenCV.git` <br>
+`$ cd buildOpenCV` <br>
+`$ sudo ./buildOpenCV.sh |& tee openCV_build.log` -->
+>`$ git clone https://github.com/mdegans/nano_build_opencv.git` <br>
+`$ cd nano_build_opencv` <br>
+`$ sudo ./build_opencv.sh |& tee openCV_build.log` <br>
+### Or Specifying an OpenCV version (git branch)
+>`$ sudo ./build_opencv.sh 4.4.0`
+## take time about 5 hours
 
-### My personal suggestion is to: <br>
+### check build Information
+### Version control:        4.4.0
+### GStreamer:              YES (1.14.5)
+
+# My personal suggestion is to: <br>
 - Use CSRT when you need higher object tracking accuracy and can tolerate slower FPS throughput <br>
 - Use KCF when you need faster FPS throughput but can handle slightly lower object tracking accuracy <br>
 - Use MOSSE when you need pure speed
 
-### Version control:        4.1.1-2-gd5a58aa75
-### GStreamer:              YES (1.14.5)
-<!-- ### Version control:      4.5.3-dirty
-### GStreamer:            YES (1.14.5)
-### After Build OpenCV, jetson nano has 51% disk usage
-### delete opencv folder (1.9 GB)
->`$ sudo rm -rf opencv*`
-
-### After Delete opencv folder, jetson nano has 39% disk usage -->
 ***
 # Part Clear Space
 ### After install All SDK, jetson nano has 84% disk usage (case install Jetson SDK Components)
@@ -71,11 +70,7 @@ password for jetson: yahboom
 `$ sudo apt-get clean`
 
 ### reduce disk usage to 80%
-<!-- # Part Jetson SDK Components
-1. do not check Jetson OS
-2. check Jetson SDK Components after build Opencv 4.5.3 (Part Build OpenCV)
-3. select automatic setup + runtime option on 3rd step in SDK Manager
-### After install Jetson SDK Components, jetson nano has 90% disk usage -->
+
 ### check cuda version
 >`$ nvcc -V`
 ***
@@ -93,7 +88,7 @@ password for jetson: yahboom
 >`$ sudo -H pip3 install torchvision` <br>
 `$ sudo -H pip3 install easyocr` <br>
 `$ sudo -H pip3 uninstall opencv-python-headless` <br>
-`$ sudo -H pip3 install opencv-contrib-python`
+<!-- `$ sudo -H pip3 install opencv-contrib-python` -->
 ## take time about 2 hours
 
 ## test project modules
@@ -103,6 +98,9 @@ password for jetson: yahboom
 `cv2.__version__` <br>
 `tracker = cv2.TrackerCSRT_create()` <br>
 `print(cv2.getBuildInformation())`
+***
+# install MQTT Client
+>`$ sudo -H pip3 install paho-mqtt`
 ***
 ## or install pytorch via docker
 >- JetPack 4.6.1 (L4T R32.7.1) <br>
@@ -162,5 +160,7 @@ password for jetson: yahboom
 * OpenCV package in pip3 does not come with `Gstreamer`
 * Buid OpenCV by shell script not suitable for `OPENBLAS_CORETYPE=ARMV8`
 * `Jetpack 4.6.2` comes with `OpenCV 4.1.1` but not have `cv2.TrackerCSRT_create()`
-* CSI Camera have to use `Gstreamer`
-* `easyocr` have to run on `OPENBLAS_CORETYPE=ARMV8 python3`
+* CSI Camera have to use `Gstreamer` to get image
+* if `easyocr` error `Illegal instruction(core dumped)`, run on `OPENBLAS_CORETYPE=ARMV8 python3` instead
+* https://github.com/mdegans/nano_build_opencv is building `OpenCV 4.4.0` that has `cv2.TrackerCSRT_create()`
+* `OPENBLAS_CORETYPE=ARMV8 python3` see only `OpenCV 4.1.1 (jetpack)` and `OpenCV 4.5.4 (opencv-python-headless (from easyocr))`
