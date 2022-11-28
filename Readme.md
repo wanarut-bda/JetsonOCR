@@ -82,13 +82,13 @@ password for jetson: yahboom
 ### ref: https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048
 >`$ wget https://nvidia.box.com/shared/static/fjtbno0vpo676a25cgvuqc1wty0fkkg6.whl -O torch-1.10.0-cp36-cp36m-linux_aarch64.whl` <br>
 `$ sudo apt-get install -y python3-pip libopenblas-base libopenmpi-dev libomp-dev` <br>
-`$ sudo -H pip3 install -y Cython` <br>
-`$ sudo -H pip3 install -y numpy torch-1.10.0-cp36-cp36m-linux_aarch64.whl`
+`$ sudo -H pip3 install Cython` <br>
+`$ sudo -H pip3 install numpy torch-1.10.0-cp36-cp36m-linux_aarch64.whl`
 ## take time about 10 minutes
->`$ sudo -H pip3 install -y torchvision` <br>
-`$ sudo -H pip3 install -y easyocr` <br>
-`$ sudo -H pip3 uninstall -y opencv-python-headless` <br>
-`$ sudo -H pip3 install -y opencv-contrib-python==4.5.3.56`
+>`$ sudo -H pip3 install torchvision` <br>
+`$ sudo -H pip3 install easyocr` <br>
+`$ sudo -H pip3 uninstall opencv-python-headless` <br>
+`$ sudo -H pip3 install opencv-contrib-python==4.5.3.56`
 ## take time about 2 hours
 
 ## test project modules
