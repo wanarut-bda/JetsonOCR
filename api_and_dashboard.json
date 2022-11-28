@@ -1,0 +1,801 @@
+[
+    {
+        "id": "f40cef15b0ba2051",
+        "type": "tab",
+        "label": "LPH - Virtual Hospital",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e163a675bb473f5f",
+        "type": "ui_gauge",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "group": "a94e32e9.1b90d8",
+        "order": 3,
+        "width": "6",
+        "height": "3",
+        "gtype": "gage",
+        "title": "",
+        "label": "bpm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "100",
+        "seg2": "150",
+        "className": "",
+        "x": 430,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "917f7842d4685107",
+        "type": "mqtt in",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "topic": "prototype/heart_rate/1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4fee91e5d8771199",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 80,
+        "wires": [
+            [
+                "e163a675bb473f5f",
+                "8d1ac343da74101a"
+            ]
+        ]
+    },
+    {
+        "id": "e1c5083f.a493",
+        "type": "ui_template",
+        "z": "f40cef15b0ba2051",
+        "group": "a94e32e9.1b90d8",
+        "name": "Node-Red Dashboard Custom CSS",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n/* ------------------------------------ */\n/* MODIFICATIONS du THÈME DARK NODE-RED */\n/* ------------------------------------ */\n\n/* ----------------------------- */\n/* On évite les clics non voulus */\n/* ----------------------------- */\nroot, a, button, p, div {\n    -webkit-user-select: none !important;\n}\n\n/* --------------------- */\n/* Dégradé du BACKGROUND */\n/* --------------------- */\nbody {\n    background: -webkit-linear-gradient(\n    55deg,\n    #009785 0%,\n    #245aa5 50%,\n    #b800e9 100%\n    );\n    -webkit-touch-callout: none !important;\n}\n\n\n/* ------------------------------------- */\n/* Modification du background par DÉFAUT */\n/* ------------------------------------- */\nbody.nr-dashboard-theme md-toolbar,\nbody.nr-dashboard-theme md-content md-card {\n    background-color: transparent !important;\n    color: #FFFFFF;\n}\n\nui-card-panel {\n    background-color: rgba(255,255,255,0.1) !important;\n    border-radius: 10px !important;\n}\n    \n/* -------------------- */\n/* ARRONDIS des GROUPES */\n/* -------------------- */\n#Homey_Dashboard_Navigation {\n    background-color: transparent !important;\n    border-radius: 10px !important;\n}\n\n/* -------------------------- */\n/* PERSONNALISATIONS diverses */\n/* -------------------------- */\n.md-card.md-default-theme, md-card {\n    border-radius: 10px;\n}\n\n.nr-dashboard-switch.ng-scope {\n    background-color: rgba(255,255,255,.2) !important;\n}\n\n.nr-dashboard-switch.ng-scope:hover {\n    background-color: rgba(255,255,255,.5) !important;\n}\n\n.nr-dashboard-theme .nr-dashboard-button .md-button {\n    background-color: rgba(255,255,255,.2);\n}\n\n.md-button {\n    border-radius: 10px;\n}\n\n.nr-dashboard-cardpanel layout-column {\n    background-color: rgba(255,255,255,0.2) !important;\n    background-color: transparent !important;\n    border-radius: 10px !important;\n}\n\n.nr-dashboard-theme ui-card-panel {\n    border: none;\n}\n\n.nr-dashboard-template {\n    overflow-y: visible;\n}\n.nr-dashboard-theme md-content md-card {\n    background-color: transparent !important;\n}\n\n.nr-dashboard-theme ui-card-panel p.nr-dashboard-cardtitle {\n    color: rgba(255, 255, 255, 0.5);\n}\n\n/* -------------------------------------------- */\n/* FIN DES MODIFICATIONS du THÈME DARK NODE-RED */\n/* -------------------------------------------- */\n\n</style>\n\n<script>\ndocument.ontouchmove = function (e) {\n    e.preventDefault();\n}\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "global",
+        "className": "",
+        "x": 700,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8d1ac343da74101a",
+        "type": "ui_chart",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "group": "a94e32e9.1b90d8",
+        "order": 4,
+        "width": "18",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "200",
+        "removeOlder": 1,
+        "removeOlderPoints": "60",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#d92626",
+            "#aec7e8",
+            "#ff7f0e",
+            "#14b314",
+            "#98df8a",
+            "#d92626",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 430,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "91d8e341a7dd8e73",
+        "type": "ui_gauge",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "group": "548423ce1319ce0e",
+        "order": 1,
+        "width": "6",
+        "height": "3",
+        "gtype": "gage",
+        "title": "",
+        "label": "bpm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "100",
+        "seg2": "150",
+        "className": "",
+        "x": 430,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d8aa226cfb4a744e",
+        "type": "mqtt in",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "topic": "prototype/heart_rate/2",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4fee91e5d8771199",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 200,
+        "wires": [
+            [
+                "91d8e341a7dd8e73",
+                "11d9166fcbef4dbb"
+            ]
+        ]
+    },
+    {
+        "id": "11d9166fcbef4dbb",
+        "type": "ui_chart",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "group": "086438fbea96b1f2",
+        "order": 2,
+        "width": "18",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "200",
+        "removeOlder": 1,
+        "removeOlderPoints": "60",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#d92626",
+            "#aec7e8",
+            "#ff7f0e",
+            "#14b314",
+            "#98df8a",
+            "#d92626",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 430,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b3395d5a828acade",
+        "type": "ui_gauge",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "group": "086438fbea96b1f2",
+        "order": 1,
+        "width": "6",
+        "height": "3",
+        "gtype": "gage",
+        "title": "",
+        "label": "bpm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "100",
+        "seg2": "150",
+        "className": "",
+        "x": 430,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "088dc86c6c24b943",
+        "type": "mqtt in",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "topic": "prototype/heart_rate/3",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4fee91e5d8771199",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 320,
+        "wires": [
+            [
+                "b3395d5a828acade",
+                "fcde82909548f25a"
+            ]
+        ]
+    },
+    {
+        "id": "fcde82909548f25a",
+        "type": "ui_chart",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "group": "548423ce1319ce0e",
+        "order": 2,
+        "width": "18",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "200",
+        "removeOlder": 1,
+        "removeOlderPoints": "60",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#d92626",
+            "#aec7e8",
+            "#ff7f0e",
+            "#14b314",
+            "#98df8a",
+            "#d92626",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 430,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d228201a63de41ef",
+        "type": "ui_gauge",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "group": "7835599237324b1a",
+        "order": 1,
+        "width": "6",
+        "height": "3",
+        "gtype": "gage",
+        "title": "",
+        "label": "bpm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "100",
+        "seg2": "150",
+        "className": "",
+        "x": 430,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f66d7edbb04b8889",
+        "type": "mqtt in",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "topic": "prototype/heart_rate/4",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4fee91e5d8771199",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 440,
+        "wires": [
+            [
+                "d228201a63de41ef",
+                "e6dea31eff159811"
+            ]
+        ]
+    },
+    {
+        "id": "e6dea31eff159811",
+        "type": "ui_chart",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "group": "7835599237324b1a",
+        "order": 2,
+        "width": "18",
+        "height": "3",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "200",
+        "removeOlder": 1,
+        "removeOlderPoints": "60",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#d92626",
+            "#aec7e8",
+            "#ff7f0e",
+            "#14b314",
+            "#98df8a",
+            "#d92626",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 430,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1cd58c71383df818",
+        "type": "mqtt in",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4fee91e5d8771199",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 620,
+        "wires": [
+            [
+                "24ca846702c7f3e3"
+            ]
+        ]
+    },
+    {
+        "id": "24ca846702c7f3e3",
+        "type": "debug",
+        "z": "f40cef15b0ba2051",
+        "name": "debug 13",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "08931f335868269c",
+        "type": "http in",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "url": "/update_areas",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 780,
+        "wires": [
+            [
+                "e1cb7562e5f4e357",
+                "e4746b8e2a9be9da"
+            ]
+        ]
+    },
+    {
+        "id": "50acee9894cd02e2",
+        "type": "file",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "filename": "msg.payload.device_id",
+        "filenameType": "jsonata",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 780,
+        "y": 780,
+        "wires": [
+            [
+                "6dda9a9302a16f3f"
+            ]
+        ]
+    },
+    {
+        "id": "6dda9a9302a16f3f",
+        "type": "debug",
+        "z": "f40cef15b0ba2051",
+        "name": "debug 14",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "e1cb7562e5f4e357",
+        "type": "switch",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "property": "payload.token",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "oKgHPf4O9g",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 410,
+        "y": 780,
+        "wires": [
+            [
+                "340b0b4714c7e15d",
+                "6ad0626ba96324db"
+            ],
+            [
+                "482c99cdd053584d"
+            ]
+        ]
+    },
+    {
+        "id": "e4746b8e2a9be9da",
+        "type": "debug",
+        "z": "f40cef15b0ba2051",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 260,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "340b0b4714c7e15d",
+        "type": "http response",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 580,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "482c99cdd053584d",
+        "type": "http response",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "statusCode": "401",
+        "headers": {},
+        "x": 580,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "6bce5c0795eebab7",
+        "type": "debug",
+        "z": "f40cef15b0ba2051",
+        "name": "debug 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "aea9740fb82c6c07",
+        "type": "http in",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "url": "/get_areas",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 1100,
+        "wires": [
+            [
+                "8cf36d6cc8d03b0e",
+                "35dfcea4cfec52b6"
+            ]
+        ]
+    },
+    {
+        "id": "8cf36d6cc8d03b0e",
+        "type": "file in",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "filename": "msg.payload.device_id",
+        "filenameType": "jsonata",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 400,
+        "y": 1100,
+        "wires": [
+            [
+                "9dc579828bdac837",
+                "07f050cc95bc37a1"
+            ]
+        ]
+    },
+    {
+        "id": "9dc579828bdac837",
+        "type": "http response",
+        "z": "f40cef15b0ba2051",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 660,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "07f050cc95bc37a1",
+        "type": "debug",
+        "z": "f40cef15b0ba2051",
+        "name": "debug 17",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "6ad0626ba96324db",
+        "type": "function",
+        "z": "f40cef15b0ba2051",
+        "name": "function 1",
+        "func": "msg.payload.token = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 780,
+        "wires": [
+            [
+                "50acee9894cd02e2",
+                "6bce5c0795eebab7"
+            ]
+        ]
+    },
+    {
+        "id": "4f0e678aa8da1669",
+        "type": "comment",
+        "z": "f40cef15b0ba2051",
+        "name": "debug all topics",
+        "info": "",
+        "x": 220,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "f08e9539a8b68809",
+        "type": "comment",
+        "z": "f40cef15b0ba2051",
+        "name": "example subscribe",
+        "info": "",
+        "x": 230,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ae031930229dd958",
+        "type": "comment",
+        "z": "f40cef15b0ba2051",
+        "name": "rest api for save areas",
+        "info": "",
+        "x": 240,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "35dfcea4cfec52b6",
+        "type": "debug",
+        "z": "f40cef15b0ba2051",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "7b13404e7eed06db",
+        "type": "comment",
+        "z": "f40cef15b0ba2051",
+        "name": "rest api for get areas",
+        "info": "",
+        "x": 230,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "a94e32e9.1b90d8",
+        "type": "ui_group",
+        "name": "Heart Rate No.1",
+        "tab": "44ba48a4.5380b",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "4fee91e5d8771199",
+        "type": "mqtt-broker",
+        "name": "mosquittoBroker",
+        "broker": "192.168.88.55",
+        "port": "1885",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "548423ce1319ce0e",
+        "type": "ui_group",
+        "name": "Heart Rate No.4",
+        "tab": "44ba48a4.5380b",
+        "order": 4,
+        "disp": true,
+        "width": "24",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "086438fbea96b1f2",
+        "type": "ui_group",
+        "name": "Heart Rate No.3",
+        "tab": "44ba48a4.5380b",
+        "order": 3,
+        "disp": true,
+        "width": "24",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "7835599237324b1a",
+        "type": "ui_group",
+        "name": "Heart Rate No.2",
+        "tab": "44ba48a4.5380b",
+        "order": 2,
+        "disp": true,
+        "width": "24",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "44ba48a4.5380b",
+        "type": "ui_tab",
+        "name": "Lampang Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
