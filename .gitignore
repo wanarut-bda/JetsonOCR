@@ -5,3 +5,4 @@
 *.deb
 *.whl
 node_modules
+jetson/Xubuntu-20.04-l4t-r32.3.1.tar.tbz2

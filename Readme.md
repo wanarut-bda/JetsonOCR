@@ -99,8 +99,8 @@ password for jetson: yahboom
 `tracker = cv2.TrackerCSRT_create()` <br>
 `print(cv2.getBuildInformation())`
 ***
-# install MQTT Client
->`$ sudo -H pip3 install paho-mqtt pywebio`
+# install MQTT Client, PywebIO, packaging
+>`$ sudo -H pip3 install paho-mqtt pywebio packaging`
 ***
 ## or install pytorch via docker
 >- JetPack 4.6.1 (L4T R32.7.1) <br>
